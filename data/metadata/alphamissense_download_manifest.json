@@ -1,0 +1,14 @@
+{
+  "source": "AlphaMissense",
+  "source_url": "https://zenodo.org/records/8208688/files/AlphaMissense_hg38.tsv.gz?download=1",
+  "filename": "AlphaMissense_hg38.tsv.gz",
+  "genome_assembly": "GRCh38.p13",
+  "transcript_annotation": "GENCODE V32 canonical transcripts",
+  "retrieved_at_utc": "2026-11-08T09:41:57.227346+00:00",
+  "file_size_bytes": 642961469,
+  "sha256": "0516cfd71c0767ac8f9c469252d429000e94e02c008b6e3a46d4b4646fcd3475",
+  "gzip_integrity": "passed",
+  "header_validation": "passed",
+  "license": "CC BY 4.0",
+  "citation": "Cheng et al. Accurate proteome-wide missense variant effect prediction with AlphaMissense. Science (2023)."
+}

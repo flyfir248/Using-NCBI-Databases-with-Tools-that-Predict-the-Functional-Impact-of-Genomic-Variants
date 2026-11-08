@@ -1,0 +1,83 @@
+{
+  "input_file": "D:\\Clinvar\\ncbi-functional-variant-analysis\\data\\processed\\brca1_brca2_primary_missense_cohort.csv",
+  "cohort_size": 16193,
+  "predictors": {
+    "SIFT": {
+      "score_column": "sift_score",
+      "prediction_column": "sift_prediction",
+      "score_statistics": {
+        "count": 16193,
+        "minimum": 0.0,
+        "median": 0.04,
+        "maximum": 1.0
+      },
+      "prediction_distribution": {
+        "deleterious": 8614,
+        "tolerated": 7552,
+        "deleterious_low_confidence": 16,
+        "tolerated_low_confidence": 11
+      },
+      "unexpected_categories": [],
+      "gene_coverage": {
+        "BRCA1": {
+          "total": 6374,
+          "available": 6374,
+          "missing": 0
+        },
+        "BRCA2": {
+          "total": 9819,
+          "available": 9819,
+          "missing": 0
+        }
+      },
+      "checks": {
+        "all_scores_present": true,
+        "all_scores_finite": true,
+        "scores_within_zero_and_one": true,
+        "all_predictions_present": true,
+        "no_unexpected_prediction_categories": true,
+        "prediction_count_matches_cohort": true
+      },
+      "all_checks_passed": true
+    },
+    "PolyPhen-2": {
+      "score_column": "polyphen_score",
+      "prediction_column": "polyphen_prediction",
+      "score_statistics": {
+        "count": 16193,
+        "minimum": 0.0,
+        "median": 0.196,
+        "maximum": 1.0
+      },
+      "prediction_distribution": {
+        "benign": 10422,
+        "possibly_damaging": 3616,
+        "probably_damaging": 2151,
+        "unknown": 4
+      },
+      "unexpected_categories": [],
+      "gene_coverage": {
+        "BRCA1": {
+          "total": 6374,
+          "available": 6374,
+          "missing": 0
+        },
+        "BRCA2": {
+          "total": 9819,
+          "available": 9819,
+          "missing": 0
+        }
+      },
+      "checks": {
+        "all_scores_present": true,
+        "all_scores_finite": true,
+        "scores_within_zero_and_one": true,
+        "all_predictions_present": true,
+        "no_unexpected_prediction_categories": true,
+        "prediction_count_matches_cohort": true
+      },
+      "all_checks_passed": true
+    }
+  },
+  "all_checks_passed": true
+}

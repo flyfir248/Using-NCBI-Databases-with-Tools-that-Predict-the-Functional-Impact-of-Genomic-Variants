@@ -1,0 +1,66 @@
+{
+  "created_at_utc": "2026-11-08T18:03:14.917593+00:00",
+  "variant_count": 16193,
+  "gene_distribution": {
+    "BRCA2": 9819,
+    "BRCA1": 6374
+  },
+  "predictors": [
+    "sift_score",
+    "polyphen_score",
+    "alphamissense_pathogenicity",
+    "cadd_phred",
+    "revel"
+  ],
+  "predictor_summary": {
+    "sift_score": {
+      "available": 16193,
+      "missing": 0,
+      "finite_nonmissing": 16193,
+      "minimum": 0.0,
+      "median": 0.04,
+      "maximum": 1.0
+    },
+    "polyphen_score": {
+      "available": 16193,
+      "missing": 0,
+      "finite_nonmissing": 16193,
+      "minimum": 0.0,
+      "median": 0.196,
+      "maximum": 1.0
+    },
+    "alphamissense_pathogenicity": {
+      "available": 16193,
+      "missing": 0,
+      "finite_nonmissing": 16193,
+      "minimum": 0.0366,
+      "median": 0.1151,
+      "maximum": 0.9994
+    },
+    "cadd_phred": {
+      "available": 16193,
+      "missing": 0,
+      "finite_nonmissing": 16193,
+      "minimum": 0.001,
+      "median": 15.57,
+      "maximum": 36.0
+    },
+    "revel": {
+      "available": 16193,
+      "missing": 0,
+      "finite_nonmissing": 16193,
+      "minimum": 0.006,
+      "median": 0.39,
+      "maximum": 0.969
+    }
+  },
+  "benchmark_eligible_count": 1546,
+  "high_confidence_eligible_count": 656,
+  "output": "data\\processed\\brca1_brca2_all_predictors_integrated.csv",
+  "sha256": {
+    "base": "ce28654bb6e3983b4a6ab08ff138ceaa5e7481d6d55ef89dd9159d1f7daf8a56",
+    "vep": "b55508c3e9b5e4dfa942ee754e48ab8b0c84494e25f8a864d78ae0bad24700f9",
+    "benchmark": "3b69c0c1eaf7cc4c85a85a4794c0464ae159796503f774f4d920c8dab583704f",
+    "output": "7c8eea9224091f9fb68a449e147753fcf31a35bbd9d44fcdccd08dab78de5797"
+  }
+}

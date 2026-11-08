@@ -1,0 +1,42 @@
+{
+  "source": "AlphaMissense",
+  "source_file": "AlphaMissense_hg38.tsv.gz",
+  "source_release": "Zenodo record 10813168, version 3",
+  "genome_assembly": "GRCh38",
+  "retrieved_at_utc": "2026-11-08T10:07:30.736292+00:00",
+  "matching_method": "Exact genomic identity: GRCh38:chromosome:position:REF>ALT",
+  "chunk_size": 500000,
+  "cohort_variant_count": 16193,
+  "source_rows_scanned": 71697556,
+  "matching_source_records": 16193,
+  "unique_matched_genomic_keys": 16193,
+  "unmatched_cohort_variants": 0,
+  "source_records_with_non_hg38_genome": 0,
+  "duplicate_genomic_keys": 0,
+  "duplicate_key_records": 0,
+  "genome_distribution": {
+    "hg38": 16193
+  },
+  "class_distribution": {
+    "likely_benign": 13604,
+    "likely_pathogenic": 1694,
+    "ambiguous": 895
+  },
+  "score_summary": {
+    "count": 16193.0,
+    "mean": 0.21304503797937382,
+    "std": 0.23001650681118554,
+    "min": 0.0366,
+    "25%": 0.0868,
+    "50%": 0.1151,
+    "75%": 0.1988,
+    "max": 0.9994
+  },
+  "invalid_score_records": 0,
+  "unexpected_classes": [],
+  "outputs": {
+    "matched_records": "data\\processed\\alphamissense_cohort_source_matches.csv",
+    "unmatched_variants": "data\\processed\\alphamissense_unmatched_cohort_variants.csv",
+    "duplicate_keys": "data\\processed\\alphamissense_duplicate_genomic_keys.csv"
+  }
+}

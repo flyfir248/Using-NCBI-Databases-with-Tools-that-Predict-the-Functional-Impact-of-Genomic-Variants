@@ -1,0 +1,353 @@
+{
+  "audit_name": "VEP full predictor annotation integrity audit",
+  "created_at_utc": "2026-11-08T17:55:16.409482+00:00",
+  "assembly": "GRCh38",
+  "expected_variant_count": 16193,
+  "annotation_variant_count": 16193,
+  "primary_transcript_subset_count": 16193,
+  "predictor_summary": {
+    "cadd_raw": {
+      "count": 16193,
+      "missing_count": 0,
+      "nonfinite_count": 0,
+      "minimum": -3.284892,
+      "median": 1.753605,
+      "mean": 1.9229831327116655,
+      "maximum": 7.784792
+    },
+    "cadd_phred": {
+      "count": 16193,
+      "missing_count": 0,
+      "nonfinite_count": 0,
+      "minimum": 0.001,
+      "median": 15.57,
+      "mean": 14.29764571110974,
+      "maximum": 36.0
+    },
+    "revel": {
+      "count": 16193,
+      "missing_count": 0,
+      "nonfinite_count": 0,
+      "minimum": 0.006,
+      "median": 0.39,
+      "mean": 0.3924775520286544,
+      "maximum": 0.969
+    }
+  },
+  "availability_summary": {
+    "cadd_raw_available": {
+      "true_count": 16193,
+      "false_count": 0,
+      "flag_score_mismatches": 0
+    },
+    "cadd_phred_available": {
+      "true_count": 16193,
+      "false_count": 0,
+      "flag_score_mismatches": 0
+    },
+    "revel_available": {
+      "true_count": 16193,
+      "false_count": 0,
+      "flag_score_mismatches": 0
+    }
+  },
+  "gene_coverage": {
+    "BRCA1": {
+      "variant_count": 6374,
+      "cadd_raw_available": 6374,
+      "cadd_phred_available": 6374,
+      "revel_available": 6374
+    },
+    "BRCA2": {
+      "variant_count": 9819,
+      "cadd_raw_available": 9819,
+      "cadd_phred_available": 9819,
+      "revel_available": 9819
+    }
+  },
+  "production_report_summary": {
+    "input_variant_count": 16193,
+    "successful_batches": 81,
+    "failed_batches": 0,
+    "selected_target_gene_mane_count": 16193,
+    "failed_variant_count": 0
+  },
+  "checks": [
+    {
+      "check": "required_columns_present",
+      "passed": true,
+      "details": {
+        "missing_annotation_columns": [],
+        "missing_cohort_columns": [],
+        "missing_primary_columns": []
+      }
+    },
+    {
+      "check": "annotation_count_matches_cohort",
+      "passed": true,
+      "details": {
+        "cohort_count": 16193,
+        "annotation_count": 16193
+      }
+    },
+    {
+      "check": "cohort_variant_keys_unique",
+      "passed": true,
+      "details": {
+        "duplicate_count": 0
+      }
+    },
+    {
+      "check": "annotation_variant_keys_unique",
+      "passed": true,
+      "details": {
+        "duplicate_count": 0
+      }
+    },
+    {
+      "check": "annotation_allele_ids_unique",
+      "passed": true,
+      "details": {
+        "duplicate_count": 0
+      }
+    },
+    {
+      "check": "variant_key_membership_matches",
+      "passed": true,
+      "details": {
+        "missing_count": 0,
+        "unexpected_count": 0,
+        "missing_examples": [],
+        "unexpected_examples": []
+      }
+    },
+    {
+      "check": "cohort_annotation_one_to_one_merge",
+      "passed": true,
+      "details": {
+        "both": 16193,
+        "left_only": 0,
+        "right_only": 0
+      }
+    },
+    {
+      "check": "clinvar_allele_ids_match",
+      "passed": true,
+      "details": {
+        "mismatch_count": 0
+      }
+    },
+    {
+      "check": "gene_assignments_match",
+      "passed": true,
+      "details": {
+        "mismatch_count": 0
+      }
+    },
+    {
+      "check": "genomic_variant_keys_reconstruct",
+      "passed": true,
+      "details": {
+        "mismatch_count": 0
+      }
+    },
+    {
+      "check": "vep_identity_keys_reconstruct",
+      "passed": true,
+      "details": {
+        "mismatch_count": 0
+      }
+    },
+    {
+      "check": "transcript_ids_match_cohort",
+      "passed": true,
+      "details": {
+        "mismatch_count": 0
+      }
+    },
+    {
+      "check": "protein_changes_match_cohort",
+      "passed": true,
+      "details": {
+        "mismatch_count": 0
+      }
+    },
+    {
+      "check": "primary_transcript_subset_count_matches",
+      "passed": true,
+      "details": {
+        "primary_subset_count": 16193,
+        "cohort_count": 16193
+      }
+    },
+    {
+      "check": "primary_transcript_ids_match_cohort",
+      "passed": true,
+      "details": {
+        "mismatch_count": 0,
+        "matched_count": 16193
+      }
+    },
+    {
+      "check": "primary_protein_changes_match_cohort",
+      "passed": true,
+      "details": {
+        "mismatch_count": 0
+      }
+    },
+    {
+      "check": "all_annotations_target_gene_mane_validated",
+      "passed": true,
+      "details": {
+        "validated_count": 16193,
+        "total": 16193
+      }
+    },
+    {
+      "check": "all_annotations_use_grch38",
+      "passed": true,
+      "details": {
+        "GRCh38": 16193
+      }
+    },
+    {
+      "check": "transcript_ids_present",
+      "passed": true,
+      "details": {
+        "missing_count": 0
+      }
+    },
+    {
+      "check": "cadd_raw_complete",
+      "passed": true,
+      "details": {
+        "count": 16193,
+        "missing_count": 0,
+        "nonfinite_count": 0,
+        "minimum": -3.284892,
+        "median": 1.753605,
+        "mean": 1.9229831327116655,
+        "maximum": 7.784792
+      }
+    },
+    {
+      "check": "cadd_raw_finite",
+      "passed": true,
+      "details": {
+        "nonfinite_count": 0
+      }
+    },
+    {
+      "check": "cadd_phred_complete",
+      "passed": true,
+      "details": {
+        "count": 16193,
+        "missing_count": 0,
+        "nonfinite_count": 0,
+        "minimum": 0.001,
+        "median": 15.57,
+        "mean": 14.29764571110974,
+        "maximum": 36.0
+      }
+    },
+    {
+      "check": "cadd_phred_finite",
+      "passed": true,
+      "details": {
+        "nonfinite_count": 0
+      }
+    },
+    {
+      "check": "revel_complete",
+      "passed": true,
+      "details": {
+        "count": 16193,
+        "missing_count": 0,
+        "nonfinite_count": 0,
+        "minimum": 0.006,
+        "median": 0.39,
+        "mean": 0.3924775520286544,
+        "maximum": 0.969
+      }
+    },
+    {
+      "check": "revel_finite",
+      "passed": true,
+      "details": {
+        "nonfinite_count": 0
+      }
+    },
+    {
+      "check": "revel_within_zero_and_one",
+      "passed": true,
+      "details": {
+        "out_of_range_count": 0
+      }
+    },
+    {
+      "check": "cadd_raw_range_reported_without_zero_one_constraint",
+      "passed": true,
+      "details": {
+        "minimum": -3.284892,
+        "maximum": 7.784792,
+        "negative_values_are_permitted": true
+      }
+    },
+    {
+      "check": "cadd_raw_available_matches_score_availability",
+      "passed": true,
+      "details": {
+        "true_count": 16193,
+        "false_count": 0,
+        "flag_score_mismatches": 0
+      }
+    },
+    {
+      "check": "cadd_phred_available_matches_score_availability",
+      "passed": true,
+      "details": {
+        "true_count": 16193,
+        "false_count": 0,
+        "flag_score_mismatches": 0
+      }
+    },
+    {
+      "check": "revel_available_matches_score_availability",
+      "passed": true,
+      "details": {
+        "true_count": 16193,
+        "false_count": 0,
+        "flag_score_mismatches": 0
+      }
+    },
+    {
+      "check": "production_report_matches_expected_completion",
+      "passed": true,
+      "details": {
+        "input_variant_count": 16193,
+        "successful_batches": 81,
+        "failed_batches": 0,
+        "selected_target_gene_mane_count": 16193,
+        "failed_variant_count": 0
+      }
+    },
+    {
+      "check": "failure_file_empty",
+      "passed": true,
+      "details": {
+        "failure_rows": 0
+      }
+    }
+  ],
+  "total_checks": 32,
+  "passed_checks": 32,
+  "failed_checks": 0,
+  "all_checks_passed": true,
+  "sha256": {
+    "annotations": "b55508c3e9b5e4dfa942ee754e48ab8b0c84494e25f8a864d78ae0bad24700f9",
+    "cohort": "8eb574ba289cd14a32af81cecd59c8060b46f485419e177b3c655cf3b0046afe",
+    "primary_transcripts": "e17c7937ddf56625d73f45ab38038e6c7020329605dd11aa649635e8b7b50475",
+    "failures": "bc70de0632dd4ddefd6eb7196c695474ce614936d48d24897e794bc073127339",
+    "production_report": "95d8928692d189dc2d5b1303e8d4287447c1804f479d5822999ca392e24cd059"
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "source": "Ensembl Variant Effect Predictor REST API",
+  "created_at_utc": "2026-11-08T17:39:16.584353+00:00",
+  "assembly": "GRCh38",
+  "api_url": "https://rest.ensembl.org/vep/homo_sapiens/region",
+  "parameters": {
+    "mane": 1,
+    "hgvs": 1,
+    "canonical": 1,
+    "protein": 1,
+    "numbers": 1,
+    "tsl": 1,
+    "CADD": 1,
+    "REVEL": 1
+  },
+  "batch_size": 200,
+  "input_variant_count": 16193,
+  "total_batches": 81,
+  "successful_batches": 81,
+  "failed_batches": 0,
+  "selected_target_gene_mane_count": 16193,
+  "failed_variant_count": 0,
+  "missing_variant_keys": 0,
+  "unexpected_variant_keys": 0,
+  "duplicate_variant_keys": 0,
+  "duplicate_allele_ids": 0,
+  "all_variants_have_exactly_one_target_gene_mane": true,
+  "predictor_summary": {
+    "cadd_raw": {
+      "available_count": 16193,
+      "missing_count": 0,
+      "coverage_fraction": 1.0,
+      "minimum": -3.284892,
+      "median": 1.753605,
+      "mean": 1.9229831327116655,
+      "maximum": 7.784792
+    },
+    "cadd_phred": {
+      "available_count": 16193,
+      "missing_count": 0,
+      "coverage_fraction": 1.0,
+      "minimum": 0.001,
+      "median": 15.57,
+      "mean": 14.29764571110974,
+      "maximum": 36.0
+    },
+    "revel": {
+      "available_count": 16193,
+      "missing_count": 0,
+      "coverage_fraction": 1.0,
+      "minimum": 0.006,
+      "median": 0.39,
+      "mean": 0.3924775520286544,
+      "maximum": 0.969
+    }
+  },
+  "gene_coverage": {
+    "BRCA1": {
+      "input_variants": 6374,
+      "selected_mane_records": 6374,
+      "cadd_raw_available": 6374,
+      "cadd_phred_available": 6374,
+      "revel_available": 6374
+    },
+    "BRCA2": {
+      "input_variants": 9819,
+      "selected_mane_records": 9819,
+      "cadd_raw_available": 9819,
+      "cadd_phred_available": 9819,
+      "revel_available": 9819
+    }
+  },
+  "failure_type_distribution": {},
+  "outputs": {
+    "annotations": "data\\processed\\vep_full_predictor_annotations.csv",
+    "failures": "data\\processed\\vep_full_predictor_failures.csv"
+  },
+  "sha256": {
+    "input": "8eb574ba289cd14a32af81cecd59c8060b46f485419e177b3c655cf3b0046afe",
+    "annotations": "b55508c3e9b5e4dfa942ee754e48ab8b0c84494e25f8a864d78ae0bad24700f9",
+    "failures": "bc70de0632dd4ddefd6eb7196c695474ce614936d48d24897e794bc073127339"
+  }
+}

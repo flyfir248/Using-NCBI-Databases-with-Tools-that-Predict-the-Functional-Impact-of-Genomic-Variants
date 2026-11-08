@@ -1,0 +1,49 @@
+{
+    "created_at_utc": "2026-11-08T10:14:22.987853+00:00",
+    "input_cohort": "data\\processed\\brca1_brca2_primary_missense_cohort.csv",
+    "input_alphamissense_matches": "data\\processed\\alphamissense_cohort_source_matches.csv",
+    "output_file": "data\\processed\\brca1_brca2_missense_predictor_integrated.csv",
+    "input_cohort_sha256": "8eb574ba289cd14a32af81cecd59c8060b46f485419e177b3c655cf3b0046afe",
+    "input_alphamissense_matches_sha256": "b2d34c8a5cef491567858f58f35096af70f30f4aca3401a580dc148fe2275f41",
+    "output_sha256": "ce28654bb6e3983b4a6ab08ff138ceaa5e7481d6d55ef89dd9159d1f7daf8a56",
+    "total_variants": 16193,
+    "genomic_merge_counts": {
+        "both": 16193,
+        "left_only": 0,
+        "right_only": 0
+    },
+    "transcript_concordance": {
+        "exact_accession_matches": 0,
+        "version_independent_matches": 6374
+    },
+    "protein_concordance": {
+        "comparable": 16193,
+        "matching": 16193,
+        "mismatching": 0
+    },
+    "score_summary": {
+        "minimum": 0.0366,
+        "median": 0.1151,
+        "mean": 0.21304503797937382,
+        "maximum": 0.9994
+    },
+    "class_distribution": {
+        "likely_benign": 13604,
+        "likely_pathogenic": 1694,
+        "ambiguous": 895
+    },
+    "validation_checks": {
+        "expected_cohort_size": true,
+        "one_to_one_genomic_merge": true,
+        "unique_genomic_keys": true,
+        "no_missing_scores": true,
+        "finite_scores": true,
+        "scores_within_zero_and_one": true,
+        "no_missing_classes": true,
+        "expected_prediction_classes": true,
+        "all_protein_changes_comparable": true,
+        "all_protein_changes_match": true,
+        "all_genomic_matches_validated": true
+    },
+    "all_checks_passed": true
+}

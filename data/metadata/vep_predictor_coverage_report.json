@@ -1,0 +1,57 @@
+{
+  "input_variants": 16193,
+  "predictors": {
+    "SIFT": {
+      "sift_score": {
+        "column_present": true,
+        "available": 16193,
+        "missing": 0,
+        "coverage_percent": 100.0,
+        "unique_values": 101,
+        "numeric_available": 16193,
+        "minimum": 0.0,
+        "maximum": 1.0,
+        "median": 0.04
+      },
+      "sift_prediction": {
+        "column_present": true,
+        "available": 16193,
+        "missing": 0,
+        "coverage_percent": 100.0,
+        "unique_values": 4,
+        "prediction_distribution": {
+          "deleterious": 8614,
+          "tolerated": 7552,
+          "deleterious_low_confidence": 16,
+          "tolerated_low_confidence": 11
+        }
+      }
+    },
+    "PolyPhen": {
+      "polyphen_score": {
+        "column_present": true,
+        "available": 16193,
+        "missing": 0,
+        "coverage_percent": 100.0,
+        "unique_values": 959,
+        "numeric_available": 16193,
+        "minimum": 0.0,
+        "maximum": 1.0,
+        "median": 0.196
+      },
+      "polyphen_prediction": {
+        "column_present": true,
+        "available": 16193,
+        "missing": 0,
+        "coverage_percent": 100.0,
+        "unique_values": 4,
+        "prediction_distribution": {
+          "benign": 10422,
+          "possibly_damaging": 3616,
+          "probably_damaging": 2151,
+          "unknown": 4
+        }
+      }
+    }
+  }
+}

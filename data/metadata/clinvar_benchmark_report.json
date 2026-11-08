@@ -1,0 +1,105 @@
+{
+  "input_file": "D:\\Clinvar\\ncbi-functional-variant-analysis\\data\\processed\\brca1_brca2_primary_missense_cohort.csv",
+  "total_missense_variants": 16193,
+  "primary_benchmark_size": 1546,
+  "high_confidence_benchmark_size": 656,
+  "primary_class_counts": {
+    "benign": 1204,
+    "pathogenic": 342
+  },
+  "high_confidence_class_counts": {
+    "benign": 404,
+    "pathogenic": 252
+  },
+  "excluded_variants": 14647,
+  "exclusion_reasons": {
+    "conflicting_clinvar_classifications": 8020,
+    "uncertain_significance": 5538,
+    "missing_clinical_significance": 1065,
+    "clinical_significance_not_provided": 24
+  },
+  "gene_summary": {
+    "BRCA1": {
+      "total_missense_variants": 6374,
+      "primary_benchmark": {
+        "pathogenic": 224,
+        "benign": 465
+      },
+      "high_confidence_benchmark": {
+        "pathogenic": 158,
+        "benign": 189
+      }
+    },
+    "BRCA2": {
+      "total_missense_variants": 9819,
+      "primary_benchmark": {
+        "pathogenic": 118,
+        "benign": 739
+      },
+      "high_confidence_benchmark": {
+        "pathogenic": 94,
+        "benign": 215
+      }
+    }
+  },
+  "review_status_classification": {
+    "benign": {
+      "-": 0,
+      "criteria provided, conflicting classifications": 0,
+      "criteria provided, multiple submitters, no conflicts": 125,
+      "criteria provided, single submitter": 782,
+      "no assertion criteria provided": 18,
+      "no classification provided": 0,
+      "reviewed by expert panel": 279
+    },
+    "excluded": {
+      "-": 1065,
+      "criteria provided, conflicting classifications": 8020,
+      "criteria provided, multiple submitters, no conflicts": 1977,
+      "criteria provided, single submitter": 3459,
+      "no assertion criteria provided": 76,
+      "no classification provided": 23,
+      "reviewed by expert panel": 27
+    },
+    "pathogenic": {
+      "-": 0,
+      "criteria provided, conflicting classifications": 0,
+      "criteria provided, multiple submitters, no conflicts": 123,
+      "criteria provided, single submitter": 83,
+      "no assertion criteria provided": 7,
+      "no classification provided": 0,
+      "reviewed by expert panel": 129
+    }
+  },
+  "high_confidence_review_statuses": [
+    "criteria provided, multiple submitters, no conflicts",
+    "reviewed by expert panel"
+  ],
+  "label_policy": {
+    "pathogenic": [
+      "Likely pathogenic",
+      "Pathogenic",
+      "Pathogenic/Likely pathogenic"
+    ],
+    "benign": [
+      "Benign",
+      "Benign/Likely benign",
+      "Likely benign"
+    ],
+    "excluded": [
+      "Uncertain significance",
+      "Conflicting classifications of pathogenicity",
+      "-",
+      "not provided",
+      "other or unrecognized values"
+    ]
+  },
+  "validation": {
+    "unique_allele_ids": true,
+    "primary_count_correct": true,
+    "high_confidence_count_correct": true,
+    "excluded_records_have_no_binary_label": true,
+    "all_primary_labels_assigned": true
+  },
+  "all_checks_passed": true
+}

@@ -1,0 +1,207 @@
+{
+  "created_at_utc": "2026-11-08T18:12:18.594799+00:00",
+  "input": "data\\processed\\brca1_brca2_all_predictors_integrated.csv",
+  "input_sha256": "7c8eea9224091f9fb68a449e147753fcf31a35bbd9d44fcdccd08dab78de5797",
+  "total_missense_variants": 16193,
+  "primary_benchmark": {
+    "n": 1546,
+    "pathogenic": 342,
+    "benign": 1204,
+    "metrics": [
+      {
+        "cohort": "primary",
+        "predictor": "SIFT",
+        "n": 1546,
+        "pathogenic_count": 342,
+        "benign_count": 1204,
+        "pathogenic_prevalence": 0.22121604139715395,
+        "roc_auc": 0.8586934875949563,
+        "roc_auc_ci_lower": 0.8430134201783528,
+        "roc_auc_ci_upper": 0.8737410082862194,
+        "average_precision_ci_lower": 0.4864373159704232,
+        "average_precision_ci_upper": 0.5404616431984514,
+        "average_precision": 0.5133052542264639
+      },
+      {
+        "cohort": "primary",
+        "predictor": "PolyPhen-2",
+        "n": 1546,
+        "pathogenic_count": 342,
+        "benign_count": 1204,
+        "pathogenic_prevalence": 0.22121604139715395,
+        "roc_auc": 0.7499490004079967,
+        "roc_auc_ci_lower": 0.7204142563288065,
+        "roc_auc_ci_upper": 0.7791663023838665,
+        "average_precision_ci_lower": 0.4457253627874609,
+        "average_precision_ci_upper": 0.5380898981168502,
+        "average_precision": 0.4900385349992402
+      },
+      {
+        "cohort": "primary",
+        "predictor": "AlphaMissense",
+        "n": 1546,
+        "pathogenic_count": 342,
+        "benign_count": 1204,
+        "pathogenic_prevalence": 0.22121604139715395,
+        "roc_auc": 0.952544879640963,
+        "roc_auc_ci_lower": 0.9365431808688387,
+        "roc_auc_ci_upper": 0.9671678287287987,
+        "average_precision_ci_lower": 0.8851087727833363,
+        "average_precision_ci_upper": 0.934884567330648,
+        "average_precision": 0.910082336938216
+      },
+      {
+        "cohort": "primary",
+        "predictor": "CADD PHRED",
+        "n": 1546,
+        "pathogenic_count": 342,
+        "benign_count": 1204,
+        "pathogenic_prevalence": 0.22121604139715395,
+        "roc_auc": 0.9507283227448466,
+        "roc_auc_ci_lower": 0.9381772017252433,
+        "roc_auc_ci_upper": 0.9614450066542324,
+        "average_precision_ci_lower": 0.8013732283117283,
+        "average_precision_ci_upper": 0.8735314466600124,
+        "average_precision": 0.8378866077770584
+      },
+      {
+        "cohort": "primary",
+        "predictor": "REVEL",
+        "n": 1546,
+        "pathogenic_count": 342,
+        "benign_count": 1204,
+        "pathogenic_prevalence": 0.22121604139715395,
+        "roc_auc": 0.9279424336033884,
+        "roc_auc_ci_lower": 0.9099716952264381,
+        "roc_auc_ci_upper": 0.9463175562452644,
+        "average_precision_ci_lower": 0.8100704515198319,
+        "average_precision_ci_upper": 0.8821519887347662,
+        "average_precision": 0.8472473221199749
+      }
+    ]
+  },
+  "high_confidence_benchmark": {
+    "n": 656,
+    "pathogenic": 252,
+    "benign": 404,
+    "metrics": [
+      {
+        "cohort": "high_confidence",
+        "predictor": "SIFT",
+        "n": 656,
+        "pathogenic_count": 252,
+        "benign_count": 404,
+        "pathogenic_prevalence": 0.38414634146341464,
+        "roc_auc": 0.8736248624862487,
+        "roc_auc_ci_lower": 0.8505444071192834,
+        "roc_auc_ci_upper": 0.8960951005814867,
+        "average_precision_ci_lower": 0.6871649907243865,
+        "average_precision_ci_upper": 0.7625286462254532,
+        "average_precision": 0.7226784086985599
+      },
+      {
+        "cohort": "high_confidence",
+        "predictor": "PolyPhen-2",
+        "n": 656,
+        "pathogenic_count": 252,
+        "benign_count": 404,
+        "pathogenic_prevalence": 0.38414634146341464,
+        "roc_auc": 0.7612466603803238,
+        "roc_auc_ci_lower": 0.7238369037796637,
+        "roc_auc_ci_upper": 0.7971598499135627,
+        "average_precision_ci_lower": 0.616229737092538,
+        "average_precision_ci_upper": 0.718004811397644,
+        "average_precision": 0.6675828939922794
+      },
+      {
+        "cohort": "high_confidence",
+        "predictor": "AlphaMissense",
+        "n": 656,
+        "pathogenic_count": 252,
+        "benign_count": 404,
+        "pathogenic_prevalence": 0.38414634146341464,
+        "roc_auc": 0.9569336397925506,
+        "roc_auc_ci_lower": 0.9376959570957096,
+        "roc_auc_ci_upper": 0.9731899752475246,
+        "average_precision_ci_lower": 0.9326957327147802,
+        "average_precision_ci_upper": 0.9701075166696363,
+        "average_precision": 0.9531703239761359
+      },
+      {
+        "cohort": "high_confidence",
+        "predictor": "CADD PHRED",
+        "n": 656,
+        "pathogenic_count": 252,
+        "benign_count": 404,
+        "pathogenic_prevalence": 0.38414634146341464,
+        "roc_auc": 0.9477644192990727,
+        "roc_auc_ci_lower": 0.9308298463774949,
+        "roc_auc_ci_upper": 0.9636531510293886,
+        "average_precision_ci_lower": 0.8508325500128187,
+        "average_precision_ci_upper": 0.9284029126894696,
+        "average_precision": 0.8889979857744805
+      },
+      {
+        "cohort": "high_confidence",
+        "predictor": "REVEL",
+        "n": 656,
+        "pathogenic_count": 252,
+        "benign_count": 404,
+        "pathogenic_prevalence": 0.38414634146341464,
+        "roc_auc": 0.9268426842684268,
+        "roc_auc_ci_lower": 0.9035671312666981,
+        "roc_auc_ci_upper": 0.9486831830504479,
+        "average_precision_ci_lower": 0.8780656624760161,
+        "average_precision_ci_upper": 0.9340540879728101,
+        "average_precision": 0.9071056292566104
+      }
+    ]
+  },
+  "predictors": {
+    "SIFT": {
+      "column": "sift_score",
+      "direction": "lower_is_more_damaging"
+    },
+    "PolyPhen-2": {
+      "column": "polyphen_score",
+      "direction": "higher_is_more_damaging"
+    },
+    "AlphaMissense": {
+      "column": "alphamissense_pathogenicity",
+      "direction": "higher_is_more_pathogenic"
+    },
+    "CADD PHRED": {
+      "column": "cadd_phred",
+      "direction": "higher_is_more_damaging"
+    },
+    "REVEL": {
+      "column": "revel",
+      "direction": "higher_is_more_pathogenic"
+    }
+  },
+  "correlation_method": "Spearman rank correlation",
+  "correlation_score_direction": "All scores direction-aligned so higher means more damaging.",
+  "disagreement_method": "Per-variant range and standard deviation of predictor percentile ranks across the full missense cohort. This is relative ranking disagreement, not a binary call.",
+  "bootstrap": {
+    "iterations": 2000,
+    "seed": 42,
+    "method": "Stratified percentile bootstrap by benchmark class",
+    "confidence_interval": "95%"
+  },
+  "limitations": [
+    "ClinVar classifications are an evidence-based benchmark, not an independent experimental ground truth.",
+    "The primary benchmark contains only unambiguous benign-side and pathogenic-side ClinVar classifications.",
+    "The high-confidence benchmark is a sensitivity analysis restricted by ClinVar review status.",
+    "Predictor training data may overlap with ClinVar or related clinical evidence; apparent performance may therefore be affected by data leakage or evidence dependence.",
+    "Average precision depends on pathogenic prevalence and should be interpreted alongside ROC-AUC and class counts.",
+    "The relative-rank disagreement analysis does not establish which predictor is correct for an individual variant."
+  ],
+  "outputs": {
+    "primary_metrics": "results/tables/predictor_performance_primary.csv",
+    "high_confidence_metrics": "results/tables/predictor_performance_high_confidence.csv",
+    "gene_metrics": "results/tables/predictor_performance_by_gene.csv",
+    "correlations": "results/tables/predictor_correlation_pairs.csv",
+    "rank_disagreement": "results/tables/predictor_rank_disagreement_all_variants.csv",
+    "report": "results/reports/predictor_evaluation_report.md"
+  }
+}
