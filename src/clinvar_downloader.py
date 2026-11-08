@@ -434,11 +434,12 @@ def extract_variants() -> tuple[pd.DataFrame, dict]:
         ),
 
         "label_candidate_distribution": (
-            variants["binary_clinvar_label_candidate"]
-            .value_counts(dropna=False)
-            .astype(str)
-            .to_dict()
-        ),
+        variants["binary_clinvar_label_candidate"]
+        .fillna("unclassified")
+        .astype(str)
+        .value_counts()
+        .to_dict()
+    ),
 
         "coordinate_representation": (
             "PositionVCF + ReferenceAlleleVCF + "
