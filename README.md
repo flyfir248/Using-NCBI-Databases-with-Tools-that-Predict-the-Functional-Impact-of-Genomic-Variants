@@ -1,566 +1,319 @@
-﻿# Integrative Functional Impact Assessment of BRCA1 and BRCA2 Missense Variants
+# Integrative Functional Impact Assessment of BRCA1 and BRCA2 Missense Variants
 
-**A transcript-aware computational genomics pipeline integrating NCBI ClinVar, Ensembl Variant Effect Predictor, and five computational missense-effect prediction algorithms.**
+**A reproducible computational genomics study integrating ClinVar, Ensembl VEP, and five variant-effect prediction algorithms.**
 
----
+## Overview
 
-## Abstract
+This project investigates how multiple computational predictors characterize missense variants in **BRCA1** and **BRCA2**, and how their predictions compare with clinical significance classifications recorded in NCBI ClinVar.
 
-The interpretation of missense variants in cancer-associated genes remains challenging because computational prediction algorithms differ in their underlying methodologies, training data, scoring systems, and predictive performance.
+The analysis combines transcript-aware variant annotation, ClinVar evidence, and five computational predictors:
 
-This project develops a reproducible computational pipeline to investigate the functional impact of missense variants in **BRCA1** and **BRCA2**. It integrates variant information from NCBI ClinVar, transcript-level functional annotation from Ensembl Variant Effect Predictor (VEP), and five computational predictors: SIFT, PolyPhen-2, AlphaMissense, CADD, and REVEL.
+- SIFT
+- PolyPhen-2
+- AlphaMissense
+- CADD PHRED
+- REVEL
 
-A GRCh38-based cohort of 28,302 candidate single-nucleotide variants was constructed. Following transcript-aware annotation and missense classification, 16,193 variants were retained in the primary missense cohort. ClinVar classifications were used to construct a primary binary benchmark containing 1,546 variants and a separate high-confidence benchmark containing 656 variants.
+The study evaluates predictor discrimination using ROC-AUC and average precision, examines agreement between predictors using Spearman correlation, and identifies variants for which predictors produce substantially different relative rankings.
 
-Predictor performance was assessed using ROC-AUC, average precision, stratified bootstrap confidence intervals, gene-specific evaluation, Spearman correlation, and predictor ranking disagreement.
+The intended application is **research-level variant characterization and prioritization**, not clinical diagnosis or independent clinical classification.
 
-AlphaMissense and CADD demonstrated the strongest overall discrimination in the primary benchmark. The findings also illustrate differences in predictor agreement and the importance of transcript selection, benchmark quality, class imbalance, and evidence limitations when interpreting computational predictions.
+## Research question
 
----
+How consistently do five computational predictors characterize BRCA1 and BRCA2 missense variants, how well do their scores distinguish ClinVar pathogenic-side and benign-side classifications, and where do their relative rankings disagree?
 
-## 1. Research Background
+### Objectives
 
-BRCA1 and BRCA2 are tumour suppressor genes associated with hereditary breast, ovarian, and other cancer susceptibilities. Missense substitutions can alter protein structure or function, but determining their functional consequences is not straightforward.
+1. Construct a GRCh38 BRCA1/BRCA2 candidate SNV dataset from ClinVar.
+2. Annotate variants using Ensembl Variant Effect Predictor (VEP).
+3. Select target-gene MANE Select transcripts, retaining explicit exceptions for manual review.
+4. Define a transcript-aware missense cohort.
+5. Construct transparent binary ClinVar benchmark subsets.
+6. Integrate five predictor scores.
+7. Evaluate discrimination, predictor correlations, gene-specific performance, and relative ranking disagreement.
+8. Produce reproducible tables, figures, reports, and provenance records.
 
-Computational prediction tools provide complementary approaches to estimating the potential impact of amino-acid substitutions. However, their predictions are not necessarily interchangeable or independently validated.
+## Study design and cohort
 
-This project investigates how multiple prediction algorithms characterize BRCA1 and BRCA2 missense variants and examines:
+### Variant acquisition and annotation
 
-- Their ability to distinguish ClinVar pathogenic-side and benign-side classifications.
-- Differences in predictive performance between algorithms.
-- Agreement and disagreement between prediction scores.
-- Differences in observed performance between BRCA1 and BRCA2.
-- The importance of transcript-aware annotation and benchmark confidence.
+ClinVar's variant summary archive was used to identify BRCA1 and BRCA2 variants on GRCh38. Candidate SNVs were identified using the VCF-specific allele fields and genomic position.
 
-### Research question
-
-How effectively can an integrated computational framework combining NCBI variant evidence and multiple functional prediction algorithms characterize and prioritize BRCA1 and BRCA2 missense variants?
-
----
-
-## 2. Research Objectives
-
-1. Retrieve and process BRCA1 and BRCA2 variant records from NCBI ClinVar.
-2. Construct a GRCh38 candidate SNV cohort using genomic reference and alternate alleles.
-3. Annotate variants using Ensembl VEP and retain transcript-level consequences.
-4. Select appropriate target-gene MANE Select transcripts.
-5. Identify missense variants and construct a transcript-aware analysis cohort.
-6. Integrate ClinVar classifications and review-status information.
-7. Construct primary and high-confidence binary benchmark datasets.
-8. Integrate five computational predictors:
-   - SIFT
-   - PolyPhen-2
-   - AlphaMissense
-   - CADD PHRED
-   - REVEL
-9. Evaluate predictive performance and score correlations.
-10. Investigate gene-specific performance and disagreement between predictors.
-11. Produce reproducible figures, tables, reports, and provenance records.
-
----
-
-## 3. Data Sources
-
-| Resource | Purpose |
-|---|---|
-| NCBI ClinVar | Variant records, genomic alleles, clinical significance, review status |
-| Ensembl VEP | Variant consequences, transcript annotation, MANE and predictor annotations |
-| AlphaMissense | Protein missense pathogenicity predictions |
-| SIFT | Evolutionary conservation-based functional prediction |
-| PolyPhen-2 | Protein sequence and structural feature-based prediction |
-| CADD | Combined annotation-dependent deleteriousness scores |
-| REVEL | Ensemble-based missense variant prediction |
-
-### Genome assembly
-
-GRCh38 was used as the reference assembly for the genomic variant cohort and AlphaMissense matching.
-
-### Variant identity
-
-Variants were identified using:
-
-`chromosome:position:reference_allele:alternate_allele`
-
-The VCF reference and alternate allele fields were used rather than ClinVar allele columns that did not contain usable nucleotide values for the extracted records.
-
----
-
-## 4. Cohort Construction
-
-### 4.1 ClinVar extraction
-
-The ClinVar variant summary dataset was filtered to retain BRCA1 and BRCA2 records and the GRCh38 assembly.
-
-The extraction process identified:
+The initial extraction yielded:
 
 | Processing stage | Variants |
 |---|---:|
-| BRCA1/BRCA2 ClinVar records | 75,740 |
-| GRCh38 records | 37,476 |
-| Candidate SNV records | 28,311 |
+| BRCA1/BRCA2 GRCh38 candidate SNVs | 28,311 |
 | Canonical A/C/G/T SNVs retained | 28,302 |
 | Ambiguous or invalid allele records excluded | 9 |
 
-No duplicate genomic variant keys were identified in the final candidate cohort.
+The 28,302 retained candidates were annotated using Ensembl VEP. Full annotation returned 28,302 variants and 867,142 transcript consequence records, with no failed variants.
 
-### 4.2 VEP annotation
+### Transcript selection
 
-All 28,302 candidate variants were submitted to Ensembl VEP using batched requests.
+Transcript selection was restricted to the ClinVar target gene:
 
-Annotation included:
+- MANE Select was preferred.
+- Canonical transcript was the fallback only when no target-gene MANE Select transcript was available.
+- Off-target gene transcripts were not accepted as primary transcripts.
+- Variants without an appropriate target-gene transcript were retained as exceptions and flagged for manual review.
 
-- Transcript consequences.
-- MANE annotations.
-- Canonical transcript information.
-- HGVS genomic and protein notation.
-- Protein identifiers.
-- Consequence terms.
-- Transcript support information.
+The transcript selection produced 28,301 target-gene MANE Select records and one manual-review exception.
 
-**Annotation coverage:**
+The exception was excluded from transcript-dependent missense analysis.
 
-- Variants returned: 28,302 / 28,302.
-- Transcript consequence records: 867,142.
-- Failed variants: 0.
+### Missense cohort
 
-### 4.3 Primary transcript selection
-
-Transcript selection followed a target-gene-aware strategy:
-
-1. Restrict transcript candidates to the ClinVar target gene.
-2. Prefer the MANE Select transcript.
-3. Use a canonical target-gene transcript only when an appropriate MANE Select transcript is unavailable.
-4. Retain unresolved cases for manual review rather than substituting an unrelated gene transcript.
-
-Results:
-
-| Selection outcome | Variants |
+| Category | Variants |
 |---|---:|
-| Target-gene MANE Select | 28,301 |
-| Manual review required | 1 |
-| Total retained | 28,302 |
+| BRCA1 missense | 6,374 |
+| BRCA2 missense | 9,819 |
+| **Total missense cohort** | **16,193** |
+| Non-missense | 12,108 |
+| Manual-review exception | 1 |
 
-The single manual-review variant did not have an appropriate BRCA2 transcript consequence in the returned annotation.
+All 16,193 missense variants had complete values for the five integrated predictors.
 
-### 4.4 Missense cohort
+## ClinVar benchmark construction
 
-Following transcript-aware consequence classification:
+ClinVar classifications were retained in the annotated dataset, but not every classification was suitable for binary evaluation.
 
-| Gene | Missense variants | Non-missense variants |
-|---|---:|---:|
-| BRCA1 | 6,374 | 5,340 |
-| BRCA2 | 9,819 | 6,768 |
-| **Total** | **16,193** | **12,108** |
-
-One additional variant was retained separately for manual transcript review.
-
-The resulting primary missense cohort contains **16,193 variants**.
-
----
-
-## 5. ClinVar Benchmark Construction
-
-ClinVar classifications were grouped into pathogenic-side and benign-side categories.
-
-### Pathogenic-side labels
+The primary binary benchmark included:
 
 - Pathogenic
 - Likely pathogenic
 - Pathogenic/Likely pathogenic
-
-### Benign-side labels
-
 - Benign
 - Likely benign
 - Benign/Likely benign
 
-Variants with uncertain, conflicting, missing, or otherwise unsuitable classifications were not converted into binary labels.
+Uncertain, conflicting, missing, unprovided, and other ambiguous classifications were excluded from primary binary evaluation. Their records and exclusion reasons were retained in the annotated dataset.
 
-### Benchmark statistics
+| Benchmark | Total | Pathogenic-side | Benign-side | Pathogenic prevalence |
+|---|---:|---:|---:|---:|
+| Full missense cohort | 16,193 | 342 eligible labels | 1,204 eligible labels | Not a complete binary benchmark |
+| Primary benchmark | 1,546 | 342 | 1,204 | 22.12% |
+| High-confidence benchmark | 656 | 252 | 404 | 38.41% |
 
-| Benchmark | Total | Pathogenic-side | Benign-side |
-|---|---:|---:|---:|
-| Primary benchmark | 1,546 | 342 | 1,204 |
-| High-confidence benchmark | 656 | 252 | 404 |
+The primary benchmark excludes 14,647 missense variants from binary evaluation.
 
-Of the 16,193 missense variants:
+The high-confidence benchmark is a stricter sensitivity analysis based on stronger ClinVar review evidence. It is not a replacement for the primary benchmark.
 
-- 1,546 were eligible for primary binary evaluation.
-- 14,647 were excluded from primary binary evaluation because their classifications were unsuitable for an unambiguous binary comparison.
+**Important:** ClinVar classifications are clinical assertions with varying evidence and review status. They are not an independent experimental gold standard.
 
-The high-confidence benchmark is a separate sensitivity analysis using stricter evidence eligibility criteria.
+## Predictors
 
-ClinVar classifications are evidence-based clinical assertions, not an independent experimental gold standard.
-
----
-
-## 6. Computational Predictors
-
-Five predictors were integrated into the missense cohort.
-
-| Predictor | Score | Interpretation |
+| Predictor | Score used | Direction |
 |---|---|---|
-| SIFT | SIFT score | Lower values indicate greater predicted deleteriousness |
-| PolyPhen-2 | PolyPhen score | Higher values indicate greater predicted damage |
-| AlphaMissense | Pathogenicity score | Higher values indicate greater predicted pathogenicity |
-| CADD | PHRED score | Higher values indicate greater predicted deleteriousness |
-| REVEL | REVEL score | Higher values indicate greater predicted pathogenicity |
+| SIFT | SIFT score | Lower = more damaging |
+| PolyPhen-2 | PolyPhen-2 score | Higher = more damaging |
+| AlphaMissense | Pathogenicity score | Higher = more pathogenic |
+| CADD | PHRED score | Higher = more deleterious |
+| REVEL | REVEL score | Higher = more pathogenic |
 
-### Predictor coverage
+SIFT was direction-transformed as `1 - SIFT` for analyses requiring a common direction. This transformation does not imply that scores from different algorithms are calibrated or directly interchangeable.
 
-All five predictors had complete coverage across the 16,193-variant missense cohort.
+CADD PHRED was used for primary predictor evaluation. CADD raw scores were retained separately and were not constrained to the interval [0, 1].
 
-| Predictor | Available scores |
-|---|---:|
-| SIFT | 16,193 |
-| PolyPhen-2 | 16,193 |
-| AlphaMissense | 16,193 |
-| CADD PHRED | 16,193 |
-| REVEL | 16,193 |
+AlphaMissense matching was performed using exact genomic variant coordinates and alleles. Protein substitutions were also checked for consistency. Source transcript identifiers were retained because transcript conventions differ between resources.
 
-For comparative analyses, SIFT was direction-aligned using `1 - SIFT score`, so that higher transformed values consistently represented greater predicted damage.
+## Main results
 
-CADD raw scores were retained for provenance and supplementary analysis; CADD PHRED was used for the primary predictor comparison.
-
-AlphaMissense genomic matches were established using exact GRCh38 genomic variant keys. Protein substitution consistency was also checked against VEP annotations.
-
----
-
-## 7. Statistical Evaluation
-
-The five predictors were evaluated against both benchmark datasets.
-
-### Performance metrics
-
-**ROC-AUC**
-
-Measures the ability of a predictor to rank pathogenic-side variants above benign-side variants across classification thresholds.
-
-**Average precision (AP)**
-
-Summarises precision-recall performance and is particularly relevant when the benchmark contains unequal class proportions.
-
-### Confidence intervals
-
-- 2,000 stratified bootstrap resamples.
-- Random seed: 42.
-- 95% percentile confidence intervals.
-
-### Additional analyses
-
-- BRCA1 and BRCA2 subgroup performance.
-- Spearman rank correlation between predictor scores.
-- Predictor percentile-rank disagreement across the complete missense cohort.
-- Primary versus high-confidence benchmark comparison.
-
-Average precision depends on pathogenic prevalence. Therefore, it should not be interpreted independently of benchmark composition.
-
----
-
-## 8. Results
-
-### 8.1 Primary benchmark performance
-
-The primary benchmark contains 1,546 variants, including 342 pathogenic-side and 1,204 benign-side variants.
+### Primary ClinVar benchmark
 
 | Predictor | ROC-AUC | 95% CI | Average precision |
-|---|---:|---|---:|
-| AlphaMissense | **0.953** | 0.937–0.967 | **0.910** |
-| CADD PHRED | 0.951 | 0.938–0.961 | 0.838 |
-| REVEL | 0.928 | 0.910–0.946 | 0.847 |
-| SIFT | 0.859 | 0.843–0.874 | 0.513 |
-| PolyPhen-2 | 0.750 | 0.720–0.779 | 0.490 |
+|---|---:|---:|---:|
+| AlphaMissense | 0.953 | 0.937?0.967 | 0.910 |
+| CADD PHRED | 0.951 | 0.938?0.961 | 0.838 |
+| REVEL | 0.928 | 0.910?0.946 | 0.847 |
+| SIFT | 0.859 | 0.843?0.874 | 0.513 |
+| PolyPhen-2 | 0.750 | 0.720?0.779 | 0.490 |
 
-AlphaMissense achieved the highest observed ROC-AUC and average precision. CADD PHRED showed a similarly strong ROC-AUC.
+### High-confidence ClinVar benchmark
 
-The confidence intervals for AlphaMissense and CADD overlap. These results do not establish statistically significant superiority of one predictor over the other.
+| Predictor | ROC-AUC | 95% CI | Average precision |
+|---|---:|---:|---:|
+| AlphaMissense | 0.957 | 0.938?0.973 | 0.953 |
+| CADD PHRED | 0.948 | 0.931?0.964 | 0.889 |
+| REVEL | 0.927 | 0.904?0.949 | 0.907 |
+| SIFT | 0.874 | 0.851?0.896 | 0.723 |
+| PolyPhen-2 | 0.761 | 0.724?0.797 | 0.668 |
 
-### 8.2 High-confidence benchmark performance
+AlphaMissense and CADD PHRED showed the strongest ROC-AUC values in both benchmarks. AlphaMissense had the highest observed average precision in both.
 
-The high-confidence benchmark contains 656 variants, including 252 pathogenic-side and 404 benign-side variants.
+These are descriptive comparisons. Overlapping confidence intervals do not establish statistical equivalence or superiority; formal paired comparisons would be needed to test differences between predictors.
 
-| Predictor | ROC-AUC | Average precision |
-|---|---:|---:|
-| AlphaMissense | **0.957** | **0.953** |
-| CADD PHRED | 0.948 | 0.889 |
-| REVEL | 0.927 | 0.907 |
-| SIFT | 0.874 | 0.723 |
-| PolyPhen-2 | 0.761 | 0.668 |
+Average precision depends on pathogenic prevalence, so values should be interpreted within their respective benchmark populations.
 
-The relative performance pattern was broadly consistent with the primary benchmark.
+## Figures
 
-### 8.3 Predictor correlations
+### ROC curves
 
-Spearman correlation analysis was performed across the full missense cohort of 16,193 variants.
+**Primary benchmark**
 
-Selected correlations:
+![ROC curves for the primary benchmark](results/figures/roc_curves_primary.png)
 
-| Predictor pair | Spearman correlation |
-|---|---:|
-| SIFT–CADD PHRED | 0.793 |
-| AlphaMissense–CADD PHRED | 0.666 |
-| PolyPhen-2–CADD PHRED | 0.664 |
-| SIFT–AlphaMissense | 0.635 |
-| SIFT–PolyPhen-2 | 0.575 |
-| CADD PHRED–REVEL | 0.517 |
-| AlphaMissense–REVEL | 0.457 |
-| SIFT–REVEL | 0.395 |
-| PolyPhen-2–REVEL | 0.341 |
+**High-confidence benchmark**
 
-The correlations demonstrate that predictors share some ranking information but are not interchangeable.
+![ROC curves for the high-confidence benchmark](results/figures/roc_curves_high_confidence.png)
 
-Correlation does not establish correctness or independent biological validation.
+### Precision-recall curves
 
-### 8.4 Gene-specific evaluation
+**Primary benchmark**
 
-Primary benchmark ROC-AUC and average precision:
+![Precision-recall curves for the primary benchmark](results/figures/pr_curves_primary.png)
 
-| Gene | Predictor | ROC-AUC | AP |
-|---|---|---:|---:|
-| BRCA1 | SIFT | 0.867 | 0.657 |
-| BRCA1 | PolyPhen-2 | 0.663 | 0.419 |
-| BRCA1 | AlphaMissense | 0.952 | 0.938 |
-| BRCA1 | CADD PHRED | 0.949 | 0.896 |
-| BRCA1 | REVEL | 0.927 | 0.879 |
-| BRCA2 | SIFT | 0.858 | 0.367 |
-| BRCA2 | PolyPhen-2 | 0.915 | 0.698 |
-| BRCA2 | AlphaMissense | 0.951 | 0.850 |
-| BRCA2 | CADD PHRED | 0.963 | 0.799 |
-| BRCA2 | REVEL | 0.918 | 0.800 |
+**High-confidence benchmark**
 
-Gene-specific benchmark sizes and pathogenic prevalence differ. These subgroup results are descriptive and should not be interpreted as proof of intrinsic gene-specific predictor superiority.
+![Precision-recall curves for the high-confidence benchmark](results/figures/pr_curves_high_confidence.png)
 
-### 8.5 Predictor ranking disagreement
+The horizontal reference in each precision-recall plot represents the pathogenic prevalence of that benchmark.
 
-Predictor disagreement was assessed through differences in percentile rankings across the complete missense cohort.
+### Predictor agreement
 
-This analysis identifies variants for which the five algorithms assign substantially different relative rankings. It is intended to highlight candidates for further investigation, not to determine which predictor is correct.
+![Spearman correlation heatmap](results/figures/predictor_correlation_heatmap.png)
 
----
+Spearman correlations were calculated across the full 16,193-variant missense cohort using direction-aligned scores.
 
-## 9. Visualisations and Results
+The strongest observed correlation was between SIFT and CADD PHRED (rho = 0.793). Correlation indicates ranking association, not agreement in calibration or biological interpretation.
 
-Generated figures are available under `results/figures/`.
+### Relative predictor ranking disagreement
 
-| Figure | Description |
-|---|---|
-| `roc_curves_primary.png` | ROC curves for the primary benchmark |
-| `pr_curves_primary.png` | Precision-recall curves for the primary benchmark |
-| `roc_curves_high_confidence.png` | ROC curves for the high-confidence benchmark |
-| `pr_curves_high_confidence.png` | Precision-recall curves for the high-confidence benchmark |
-| `predictor_correlation_heatmap.png` | Correlation between five predictor scores |
-| `predictor_score_distributions.png` | Predictor score distributions |
-| `predictor_rank_disagreement.png` | Relative predictor ranking disagreement |
+![Predictor ranking disagreement](results/figures/predictor_rank_disagreement.png)
 
-Evaluation tables are available under `results/tables/`.
+The distribution represents the range of within-predictor percentile ranks assigned to each variant. It measures relative ranking spread, not binary classification disagreement or prediction correctness.
 
-The consolidated evaluation report is:
+### Direction-aligned score distributions
 
-`results/reports/predictor_evaluation_report.md`
+![Direction-aligned percentile distributions](results/figures/predictor_score_distributions.png)
 
----
+Scores are converted to within-predictor percentile ranks to permit visual comparison of relative ranking distributions. These percentiles are not calibrated probabilities and do not imply equivalent score scales.
 
-## 10. Pipeline Architecture
+## Statistical analysis
 
-```mermaid
-flowchart TD
-    A[NCBI ClinVar Variant Summary] --> B[BRCA1 / BRCA2 GRCh38 SNV Extraction]
-    B --> C[Ensembl VEP Annotation]
-    C --> D[Target-Gene MANE Select Transcript Selection]
-    D --> E[Missense Cohort Construction]
-    E --> F[ClinVar Benchmark Construction]
+- ROC-AUC measures discrimination across classification thresholds.
+- Average precision summarizes the precision-recall curve and is sensitive to class prevalence.
+- Confidence intervals were estimated using 2,000 stratified bootstrap resamples, with random seed 42.
+- Spearman rank correlation was used to assess monotonic association between predictor scores.
+- Gene-specific metrics were calculated separately for BRCA1 and BRCA2.
+- Relative ranking disagreement was quantified using the range and standard deviation of within-predictor percentile ranks.
 
-    E --> G1[SIFT]
-    E --> G2[PolyPhen-2]
-    E --> G3[AlphaMissense]
-    E --> G4[CADD]
-    E --> G5[REVEL]
+The analysis preserves predictor missingness rather than converting missing values into benign or zero scores. The integrated predictor dataset used in the final evaluation contained complete values for all five predictors.
 
-    G1 --> H[Five-Predictor Integration]
-    G2 --> H
-    G3 --> H
-    G4 --> H
-    G5 --> H
-
-    F --> I[Statistical Evaluation]
-    H --> I
-
-    I --> J[Performance Metrics]
-    I --> K[Correlation Analysis]
-    I --> L[Gene-Specific Evaluation]
-    I --> M[Ranking Disagreement]
-    J --> N[Figures, Tables and Reports]
-    K --> N
-    L --> N
-    M --> N
-```
-
----
-
-## 11. Repository Structure
+## Repository structure
 
 ```text
 ncbi-functional-variant-analysis/
-│
-├── config/
-│
-├── data/
-│   ├── raw/
-│   ├── processed/
-│   └── metadata/
-│
-├── docs/
-│   ├── references.md
-│   └── study_summary.md
-│
-├── notebooks/
-│
-├── results/
-│   ├── figures/
-│   ├── tables/
-│   └── reports/
-│
-├── src/
-│   ├── clinvar_downloader.py
-│   ├── vep_full_annotation.py
-│   ├── select_primary_transcripts.py
-│   ├── classify_primary_missense.py
-│   ├── build_clinvar_benchmark.py
-│   ├── alphamissense_downloader.py
-│   ├── extract_alphamissense_cohort.py
-│   ├── integrate_alphamissense.py
-│   ├── vep_full_predictor_annotation.py
-│   ├── integrate_all_predictors.py
-│   └── run_predictor_evaluation.py
-│
-├── tests/
-├── workflows/
-├── requirements.txt
-├── .gitignore
-└── README.md
+??? config/
+??? data/
+?   ??? raw/                 # Downloaded source data (not committed)
+?   ??? processed/           # Derived datasets (not committed)
+?   ??? metadata/            # Provenance, manifests, audit reports
+??? docs/
+?   ??? references.md
+?   ??? study_summary.md
+?   ??? research_writeup.md
+??? notebooks/
+??? results/
+?   ??? figures/
+?   ??? reports/
+?   ??? tables/
+??? src/
+?   ??? clinvar_downloader.py
+?   ??? vep_full_annotation.py
+?   ??? select_primary_transcripts.py
+?   ??? classify_primary_missense.py
+?   ??? build_clinvar_benchmark.py
+?   ??? alphamissense_downloader.py
+?   ??? extract_alphamissense_cohort.py
+?   ??? integrate_alphamissense.py
+?   ??? vep_full_predictor_annotation.py
+?   ??? integrate_all_predictors.py
+?   ??? run_predictor_evaluation.py
+??? tests/
+??? workflows/
+??? .gitignore
+??? README.md
+??? requirements.txt
 ```
 
-The source directory also contains pilot, audit, and diagnostic scripts supporting individual pipeline stages.
+The repository also contains audit and pilot scripts. The structure above highlights the main processing stages rather than every utility.
 
-Large raw and processed datasets are intentionally excluded from version control.
-
----
-
-## 12. Reproducibility
+## Reproducibility
 
 ### Environment
 
-- Python 3.10
-- pandas
-- NumPy
-- SciPy
-- scikit-learn
-- Matplotlib
-- Requests
-- tqdm
+The project was developed with Python 3.10.7 in a virtual environment.
 
-Install the project in a virtual environment.
-
-**Windows PowerShell**
+From the repository root, create and activate the environment:
 
 ```powershell
-py -3.10 -m venv .venv
+C:\Python310\python.exe -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-### Execution order
+### Run the evaluation
 
-Run commands from the repository root.
+The final evaluation consumes the integrated processed dataset:
 
-1. Download and extract ClinVar records.
-2. Run VEP pilot and full-cohort annotation.
-3. Select target-gene primary transcripts.
-4. Classify missense and non-missense variants.
-5. Construct ClinVar primary and high-confidence benchmarks.
-6. Download and extract AlphaMissense cohort predictions.
-7. Integrate AlphaMissense with the cohort.
-8. Run VEP CADD and REVEL annotation.
-9. Integrate all five predictor scores.
-10. Execute statistical evaluation and generate reports.
+```text
+data/processed/brca1_brca2_all_predictors_integrated.csv
+```
 
-Important final-stage commands:
+Run:
 
 ```powershell
-python .\src\select_primary_transcripts.py
-python .\src\classify_primary_missense.py
-python .\src\build_clinvar_benchmark.py
-python .\src\integrate_alphamissense.py
-python .\src\integrate_all_predictors.py
 python .\src\run_predictor_evaluation.py
 ```
 
-Full-cohort VEP annotation and data acquisition are network-intensive. Review existing run manifests and checkpoints before restarting these stages. Do not rerun completed full-cohort jobs unnecessarily.
+The evaluation script generates the performance tables, correlation outputs, ranking-disagreement outputs, figures, and evaluation reports under `results/` and `data/metadata/`.
 
-The exact acquisition parameters, retrieval timestamps, checksums, and processing summaries are recorded in `data/metadata/`.
+The upstream acquisition and annotation stages require their source files and, where applicable, access to external services. See the scripts and provenance manifests under `data/metadata/` for source details.
 
----
+### Reproducibility considerations
 
-## 13. Data Provenance and Licensing
+- Random seed: 42.
+- Bootstrap iterations: 2,000.
+- Genome assembly: GRCh38.
+- Variant matching uses genomic alleles and coordinates.
+- Transcript selection is restricted to the target gene.
+- Raw and processed data are excluded from Git by design.
+- Source checksums and acquisition details are recorded in metadata manifests where available.
 
-The repository records source URLs, retrieval timestamps, checksums, processing reports, and annotation metadata.
+## Data availability and provenance
 
-Raw and processed datasets are not committed because of their size and source-specific distribution conditions.
+The repository tracks scripts, documentation, metadata, tables, figures, and reports. Large raw and processed datasets are intentionally excluded from version control.
 
-### AlphaMissense licensing consideration
+Key source resources:
 
-The downloaded AlphaMissense file contains an embedded header declaring **CC BY-NC-SA 4.0**. Its checksum matches the file published in Zenodo record `10813168` (v3), whose record metadata declares **CC BY 4.0**.
+- [NCBI ClinVar](https://www.ncbi.nlm.nih.gov/clinvar/)
+- [Ensembl Variant Effect Predictor](https://www.ensembl.org/info/docs/tools/vep/index.html)
+- [AlphaMissense source repository](https://github.com/google-deepmind/alphamissense)
+- [AlphaMissense Zenodo record](https://zenodo.org/records/8208688)
 
-This discrepancy is recorded in:
+The AlphaMissense source file header and a newer Zenodo record contain differing licence declarations. This discrepancy is documented in the download manifest and remains unresolved. Do not assume commercial-use rights without checking the applicable terms with the relevant institutional or legal team.
 
-`data/metadata/alphamissense_download_manifest.json`
+## Limitations
 
-The applicable licence must be confirmed with the rights holder or the organisation's legal/licensing team before commercial use. The discrepancy is not treated as resolved.
+1. **ClinVar evidence heterogeneity:** Clinical classifications differ in review status, evidence quality, and submission history.
+2. **Benchmark coverage:** Only 1,546 of 16,193 missense variants entered the primary binary benchmark.
+3. **Evidence dependence:** Predictor training datasets may overlap with ClinVar or related clinical evidence, creating potential dependence or leakage.
+4. **Transcript representation:** Transcript and protein conventions differ between resources; genomic allele matching was therefore central to integration.
+5. **Predictor calibration:** Scores from different algorithms are not directly comparable as probabilities.
+6. **Gene subgroup differences:** BRCA1 and BRCA2 have different benchmark sizes and pathogenic prevalence; subgroup metrics are descriptive.
+7. **No independent experimental validation:** This study evaluates agreement with ClinVar assertions, not experimentally measured functional effects.
+8. **No clinical validation:** The analysis does not establish clinical utility or support patient-level diagnostic decisions.
 
----
+## Responsible interpretation
 
-## 14. Limitations
+The results support comparative research assessment and prioritization of variants for further investigation. They do not establish a clinical classification, replace expert review, or demonstrate that any predictor is universally superior.
 
-1. ClinVar classifications are not an independent experimental gold standard.
-2. A substantial proportion of the missense cohort has uncertain or conflicting classifications and cannot be included in the primary binary benchmark.
-3. ClinVar review status and evidence strength vary across records.
-4. Predictor training datasets may overlap with ClinVar or related clinical evidence, creating potential evidence dependence or data leakage.
-5. Average precision depends on class prevalence and benchmark composition.
-6. Gene-specific benchmark sizes and class distributions differ.
-7. Predictor correlation and ranking agreement do not establish biological correctness.
-8. Independent functional experiments and external validation cohorts are required to establish broader generalisability.
+## References
 
----
+See [docs/references.md](docs/references.md) for the bibliography and [docs/research_writeup.md](docs/research_writeup.md) for the manuscript-style study draft.
 
-## 15. Conclusion
+## License
 
-This project establishes a transcript-aware and reproducible computational framework for comparative assessment of BRCA1 and BRCA2 missense variant predictions.
-
-The analysis demonstrates that:
-
-- A substantial BRCA1/BRCA2 missense cohort can be constructed through systematic ClinVar extraction and VEP annotation.
-- Target-gene transcript selection is an important safeguard against incorrect consequence assignment.
-- AlphaMissense and CADD achieved the strongest observed overall performance against the constructed ClinVar benchmarks.
-- The five predictors show meaningful differences in their rankings and levels of agreement.
-- Benchmark composition, classification confidence, gene-specific prevalence, and potential evidence dependence must be considered when interpreting prediction performance.
-
-The framework provides a foundation for further investigation, experimental validation, and research-oriented prioritisation of candidate variants.
-
-**This work supports computational research and does not establish clinical pathogenicity or replace clinical variant interpretation.**
-
----
-
-## 16. References
-
-1. Landrum, M. J., et al. (2020). ClinVar: improving access to variant interpretations and supporting evidence. *Nucleic Acids Research*. https://doi.org/10.1093/nar/gkz972
-2. McLaren, W., et al. (2016). The Ensembl Variant Effect Predictor. *Genome Biology*. https://doi.org/10.1186/s13059-016-0974-4
-3. Ng, P. C., and Henikoff, S. (2003). SIFT: predicting amino acid changes that affect protein function. *Nucleic Acids Research*. https://doi.org/10.1093/nar/gkg509
-4. Adzhubei, I. A., et al. (2010). A method and server for predicting damaging missense mutations. *Nature Methods*. https://doi.org/10.1038/nmeth0410-248
-5. Ioannidis, N. M., et al. (2016). REVEL: an ensemble method for predicting the pathogenicity of rare missense variants. *The American Journal of Human Genetics*. https://doi.org/10.1016/j.ajhg.2016.08.016
-6. Rentzsch, P., et al. (2019). CADD: predicting the deleteriousness of variants throughout the human genome. *Nucleic Acids Research*. https://doi.org/10.1093/nar/gky1016
-7. Cheng, J., et al. (2023). Accurate proteome-wide missense variant effect prediction with AlphaMissense. *Science*. https://doi.org/10.1126/science.adg7492
-
----
-
-**Project focus:** Computational Genomics | Variant Annotation | Bioinformatics | Functional Prediction | Statistical Evaluation | Reproducible Research
+A repository licence has not been specified. Source datasets and third-party prediction resources remain subject to their own terms. Check those terms before redistribution or commercial use.
