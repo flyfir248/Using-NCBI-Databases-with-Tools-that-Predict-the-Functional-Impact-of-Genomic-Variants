@@ -1,0 +1,49 @@
+{
+    "source": "NCBI ClinVar",
+    "retrieved_at_utc": "2026-11-08T05:29:01.722522+00:00",
+    "assembly": "GRCh38",
+    "target_genes": [
+        "BRCA1",
+        "BRCA2"
+    ],
+    "total_clinvar_rows_scanned": 9345867,
+    "target_gene_rows": 75740,
+    "grch38_rows": 37476,
+    "candidate_snv_rows": 28311,
+    "canonical_snv_rows_before_deduplication": 28302,
+    "ambiguous_or_invalid_allele_rows": 9,
+    "duplicates_removed": 0,
+    "final_unique_candidate_variants": 28302,
+    "gene_distribution": {
+        "BRCA2": 16588,
+        "BRCA1": 11714
+    },
+    "clinical_significance_distribution": {
+        "Conflicting classifications of pathogenicity": 8529,
+        "Likely benign": 7637,
+        "Uncertain significance": 6212,
+        "-": 2019,
+        "Pathogenic": 1790,
+        "Benign": 1326,
+        "Pathogenic/Likely pathogenic": 308,
+        "Likely pathogenic": 268,
+        "Benign/Likely benign": 181,
+        "not provided": 32
+    },
+    "review_status_distribution": {
+        "criteria provided, single submitter": 8565,
+        "criteria provided, conflicting classifications": 8527,
+        "criteria provided, multiple submitters, no conflicts": 5187,
+        "reviewed by expert panel": 3670,
+        "-": 2019,
+        "no assertion criteria provided": 303,
+        "no classification provided": 31
+    },
+    "label_candidate_distribution": {
+        "unclassified": 17281,
+        "0": 8963,
+        "1": 2058
+    },
+    "coordinate_representation": "PositionVCF + ReferenceAlleleVCF + AlternateAlleleVCF",
+    "important_note": "These are canonical candidate SNVs, not confirmed missense variants. Transcript-level annotation is required. Clinical classifications are provisional and must be evaluated at the appropriate evidence level."
+}

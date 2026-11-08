@@ -1,0 +1,8 @@
+{
+    "source": "NCBI ClinVar",
+    "source_url": "https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/variant_summary.txt.gz",
+    "retrieved_at_utc": "2026-11-08T05:27:22.351009+00:00",
+    "filename": "clinvar_variant_summary.txt.gz",
+    "file_size_bytes": 457862838,
+    "sha256": "7c39f2d875f3cd1ccd2d568662f06a7df647dd91fc0f51a072a758b08004c72e"
+}
