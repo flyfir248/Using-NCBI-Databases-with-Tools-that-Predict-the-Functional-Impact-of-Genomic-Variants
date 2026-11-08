@@ -1,0 +1,59 @@
+{
+  "source": "Ensembl Variant Effect Predictor REST API",
+  "completed_at_utc": "2026-11-08T08:09:49.934003+00:00",
+  "assembly": "GRCh38",
+  "api_url": "https://rest.ensembl.org/vep/homo_sapiens/region",
+  "parameters": {
+    "mane": 1,
+    "hgvs": 1,
+    "canonical": 1,
+    "protein": 1,
+    "numbers": 1,
+    "tsl": 1
+  },
+  "batch_size": 200,
+  "input_candidate_count": 28302,
+  "total_batches": 142,
+  "successful_batches": 142,
+  "failed_batches": 0,
+  "returned_variant_count": 28302,
+  "transcript_consequence_rows": 867142,
+  "failed_variant_count": 0,
+  "missing_clinvar_ids": 0,
+  "unexpected_clinvar_ids": 0,
+  "duplicate_clinvar_ids": 0,
+  "gene_distribution": {
+    "BRCA2": 16588,
+    "BRCA1": 11714
+  },
+  "consequence_distribution": {
+    "missense_variant": 16366,
+    "synonymous_variant": 5447,
+    "intron_variant": 2042,
+    "stop_gained": 1639,
+    "splice_region_variant": 761,
+    "splice_polypyrimidine_tract_variant": 556,
+    "non_coding_transcript_exon_variant": 302,
+    "splice_acceptor_variant": 258,
+    "splice_donor_region_variant": 250,
+    "splice_donor_variant": 248,
+    "5_prime_UTR_variant": 150,
+    "3_prime_UTR_variant": 121,
+    "splice_donor_5th_base_variant": 88,
+    "start_lost": 41,
+    "stop_lost": 29,
+    "stop_retained_variant": 4
+  },
+  "transcript_coverage": {
+    "variants_with_mane_select": 28301,
+    "variants_without_mane_select": 1,
+    "variants_with_canonical": 28302,
+    "variants_without_canonical": 0
+  },
+  "outputs": {
+    "variants": "data\\processed\\vep_full_variants.csv",
+    "transcript_consequences": "data\\processed\\vep_full_transcript_consequences.csv",
+    "failures": "data\\processed\\vep_full_failures.csv",
+    "transcript_coverage": "data\\metadata\\vep_full_transcript_coverage.csv"
+  }
+}

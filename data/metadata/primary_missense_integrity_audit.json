@@ -1,0 +1,40 @@
+{
+  "total_variants": 28302,
+  "missense_variants": 16193,
+  "non_missense_variants": 12108,
+  "classification_distribution": {
+    "missense": 16193,
+    "non_missense": 12108,
+    "manual_review_no_selected_target_gene_transcript": 1
+  },
+  "gene_summary": {
+    "BRCA1": {
+      "total": 11714,
+      "missense": 6374,
+      "non_missense": 5340,
+      "manual_review": 0
+    },
+    "BRCA2": {
+      "total": 16588,
+      "missense": 9819,
+      "non_missense": 6768,
+      "manual_review": 1
+    }
+  },
+  "checks": {
+    "total_candidate_count": true,
+    "unique_allele_ids": true,
+    "missense_count": true,
+    "non_missense_count": true,
+    "manual_review_count": true,
+    "classification_counts_reconcile": true,
+    "missense_ids_match_classification": true,
+    "non_missense_ids_match_classification": true,
+    "no_overlap_between_output_cohorts": true,
+    "all_output_ids_exist_in_full_dataset": true,
+    "gene_counts_match_expected": true,
+    "selected_transcripts_match_target_gene": true,
+    "missense_transcripts_are_protein_coding": true
+  },
+  "all_checks_passed": true
+}

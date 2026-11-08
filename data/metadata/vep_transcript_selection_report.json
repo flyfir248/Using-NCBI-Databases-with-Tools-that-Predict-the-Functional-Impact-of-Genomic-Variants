@@ -1,0 +1,35 @@
+{
+    "input_variant_count": 28302,
+    "input_transcript_record_count": 867142,
+    "primary_transcript_output_count": 28302,
+    "selection_method_distribution": {
+        "MANE_Select": 28301,
+        "manual_review": 1
+    },
+    "gene_distribution": {
+        "BRCA1": {
+            "total_variants": 11714,
+            "mane_select": 11714,
+            "canonical_fallback": 0,
+            "manual_review": 0
+        },
+        "BRCA2": {
+            "total_variants": 16588,
+            "mane_select": 16587,
+            "canonical_fallback": 0,
+            "manual_review": 1
+        }
+    },
+    "manual_review_count": 1,
+    "mane_records_from_other_genes_excluded": 1817,
+    "selection_policy": [
+        "Only transcripts belonging to the ClinVar target gene are eligible",
+        "MANE Select preferred when exactly one target-gene record is available",
+        "Canonical fallback only when target-gene MANE Select is absent",
+        "Ambiguous or unavailable target-gene transcripts flagged for manual review",
+        "All original variants retained",
+        "All original transcript records preserved separately"
+    ],
+    "output_file": "D:\\Clinvar\\ncbi-functional-variant-analysis\\data\\processed\\vep_primary_transcripts.csv",
+    "exceptions_file": "D:\\Clinvar\\ncbi-functional-variant-analysis\\data\\metadata\\vep_transcript_selection_exceptions.csv"
+}

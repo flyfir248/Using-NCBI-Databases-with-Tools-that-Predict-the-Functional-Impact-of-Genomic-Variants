@@ -1,0 +1,60 @@
+{
+    "input_variant_count": 28302,
+    "missense_cohort_count": 16193,
+    "non_missense_count": 12108,
+    "manual_review_count": 1,
+    "classification_distribution": {
+        "missense": 16193,
+        "non_missense": 12108,
+        "manual_review_no_selected_target_gene_transcript": 1
+    },
+    "gene_summary": {
+        "BRCA1": {
+            "total_candidates": 11714,
+            "missense": 6374,
+            "non_missense": 5340,
+            "manual_review": 0
+        },
+        "BRCA2": {
+            "total_candidates": 16588,
+            "missense": 9819,
+            "non_missense": 6768,
+            "manual_review": 1
+        }
+    },
+    "top_non_missense_consequences": {
+        "synonymous_variant": 5678,
+        "intron_variant": 2405,
+        "stop_gained": 1568,
+        "splice_polypyrimidine_tract_variant|intron_variant": 546,
+        "splice_region_variant|splice_polypyrimidine_tract_variant|intron_variant": 446,
+        "splice_donor_region_variant|intron_variant": 255,
+        "splice_acceptor_variant": 236,
+        "splice_donor_variant": 233,
+        "splice_region_variant|intron_variant": 147,
+        "5_prime_UTR_variant": 147,
+        "splice_region_variant|synonymous_variant": 118,
+        "3_prime_UTR_variant": 111,
+        "splice_donor_5th_base_variant|intron_variant": 88,
+        "stop_gained|splice_region_variant": 39,
+        "upstream_gene_variant": 36,
+        "splice_region_variant|5_prime_UTR_variant": 23,
+        "start_lost": 15,
+        "downstream_gene_variant": 12,
+        "stop_lost": 3,
+        "stop_retained_variant": 2
+    },
+    "classification_policy": [
+        "Use selected target-gene MANE Select transcript.",
+        "Use target-gene canonical transcript only as fallback.",
+        "Missense requires missense_variant in selected transcript consequence_terms.",
+        "Do not use variant-level most_severe_consequence for cohort selection.",
+        "Retain manual-review and non-missense variants in the full classification dataset.",
+        "Exclude manual-review cases from the missense cohort."
+    ],
+    "outputs": {
+        "all_classifications": "D:\\Clinvar\\ncbi-functional-variant-analysis\\data\\processed\\vep_primary_missense_classification.csv",
+        "missense_cohort": "D:\\Clinvar\\ncbi-functional-variant-analysis\\data\\processed\\brca1_brca2_primary_missense_cohort.csv",
+        "non_missense": "D:\\Clinvar\\ncbi-functional-variant-analysis\\data\\processed\\brca1_brca2_primary_non_missense.csv"
+    }
+}

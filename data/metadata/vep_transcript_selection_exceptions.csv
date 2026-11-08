@@ -1,0 +1,2 @@
+#AlleleID,target_gene,reason,target_gene_transcript_count,target_gene_mane_count,target_gene_canonical_count
+4187398,BRCA2,No MANE Select or canonical transcript in target gene,0,0,0

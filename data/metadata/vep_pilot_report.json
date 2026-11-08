@@ -1,0 +1,30 @@
+{
+  "source": "Ensembl Variant Effect Predictor REST API",
+  "retrieved_at_utc": "2026-11-08T05:34:07.756136+00:00",
+  "assembly": "GRCh38",
+  "input_candidate_count": 20,
+  "vep_result_count": 20,
+  "transcript_consequence_rows": 715,
+  "gene_distribution": {
+    "BRCA1": 10,
+    "BRCA2": 10
+  },
+  "consequence_distribution": {
+    "missense_variant": 11,
+    "synonymous_variant": 4,
+    "intron_variant": 1,
+    "splice_region_variant": 1,
+    "start_lost": 1,
+    "stop_gained": 1,
+    "splice_acceptor_variant": 1
+  },
+  "parameters": {
+    "mane": 1,
+    "hgvs": 1,
+    "canonical": 1,
+    "protein": 1,
+    "numbers": 1,
+    "tsl": 1
+  },
+  "api_url": "https://rest.ensembl.org/vep/homo_sapiens/region"
+}

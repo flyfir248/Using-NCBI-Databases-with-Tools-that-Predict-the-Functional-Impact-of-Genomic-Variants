@@ -1,0 +1,209 @@
+{
+  "input_candidate_count": 28302,
+  "vep_variant_count": 28302,
+  "transcript_row_count": 867142,
+  "failure_row_count": 0,
+  "checks": {
+    "candidate_count_matches_vep_count": {
+      "passed": true,
+      "details": {
+        "candidates": 28302,
+        "vep_variants": 28302
+      }
+    },
+    "no_failed_variants": {
+      "passed": true,
+      "details": {
+        "failure_rows": 0
+      }
+    },
+    "candidate_allele_ids_unique": {
+      "passed": true,
+      "details": {
+        "unique_ids": 28302
+      }
+    },
+    "vep_allele_ids_unique": {
+      "passed": true,
+      "details": {
+        "unique_ids": 28302
+      }
+    },
+    "all_candidate_allele_ids_present_in_vep": {
+      "passed": true,
+      "details": {
+        "missing_from_vep": 0,
+        "unexpected_in_vep": 0
+      }
+    },
+    "candidate_genomic_keys_unique": {
+      "passed": true,
+      "details": {
+        "unique_keys": 28302
+      }
+    },
+    "vep_genomic_keys_unique": {
+      "passed": true,
+      "details": {
+        "unique_keys": 28302
+      }
+    },
+    "all_candidate_genomic_keys_present_in_vep": {
+      "passed": true,
+      "details": {
+        "missing_from_vep": 0,
+        "unexpected_in_vep": 0
+      }
+    },
+    "stored_vep_identity_key_matches_reconstructed_key": {
+      "passed": true,
+      "details": {
+        "mismatches": 0
+      }
+    },
+    "allele_id_to_genomic_identity_mapping": {
+      "passed": true,
+      "details": {
+        "mapping_mismatches": 0
+      }
+    },
+    "no_orphan_transcript_records": {
+      "passed": true,
+      "details": {
+        "orphan_allele_ids": 0
+      }
+    },
+    "transcript_counts_match_variant_records": {
+      "passed": true,
+      "details": {
+        "count_mismatches": 0
+      }
+    },
+    "no_missing_transcript_ids": {
+      "passed": true,
+      "details": {
+        "missing_transcript_ids": 0
+      }
+    },
+    "coverage_table_has_one_row_per_variant": {
+      "passed": true,
+      "details": {
+        "coverage_rows": 28302,
+        "unique_coverage_allele_ids": 28302
+      }
+    },
+    "every_variant_has_mane_or_canonical": {
+      "passed": true,
+      "details": {
+        "without_mane": 1,
+        "without_canonical": 0
+      }
+    }
+  },
+  "errors": [],
+  "transcript_coverage": {
+    "variants_with_mane_select": 28301,
+    "variants_without_mane_select": 1,
+    "variants_with_canonical": 28302,
+    "variants_without_canonical": 0,
+    "mane_missing_variants": [
+      {
+        "#AlleleID": "4187398",
+        "GeneSymbol": "BRCA2",
+        "transcript_count": 3,
+        "canonical_count": 1
+      }
+    ]
+  },
+  "gene_distribution": {
+    "BRCA2": 16588,
+    "BRCA1": 11714
+  },
+  "most_severe_consequence_distribution": {
+    "missense_variant": 16366,
+    "synonymous_variant": 5447,
+    "intron_variant": 2042,
+    "stop_gained": 1639,
+    "splice_region_variant": 761,
+    "splice_polypyrimidine_tract_variant": 556,
+    "non_coding_transcript_exon_variant": 302,
+    "splice_acceptor_variant": 258,
+    "splice_donor_region_variant": 250,
+    "splice_donor_variant": 248,
+    "5_prime_UTR_variant": 150,
+    "3_prime_UTR_variant": 121,
+    "splice_donor_5th_base_variant": 88,
+    "start_lost": 41,
+    "stop_lost": 29,
+    "stop_retained_variant": 4
+  },
+  "transcript_biotype_distribution": {
+    "protein_coding": 646924,
+    "nonsense_mediated_decay": 185417,
+    "retained_intron": 23455,
+    "lncRNA": 7532,
+    "protein_coding_CDS_not_defined": 2260,
+    "processed_pseudogene": 1541,
+    "transcribed_unprocessed_pseudogene": 13
+  },
+  "transcript_consequence_distribution": {
+    "missense_variant": 263893,
+    "intron_variant": 172358,
+    "synonymous_variant": 89253,
+    "downstream_gene_variant": 56512,
+    "missense_variant|NMD_transcript_variant": 51541,
+    "3_prime_UTR_variant|NMD_transcript_variant": 45826,
+    "stop_gained": 25075,
+    "synonymous_variant|NMD_transcript_variant": 18434,
+    "intron_variant|NMD_transcript_variant": 17730,
+    "non_coding_transcript_exon_variant": 14726,
+    "upstream_gene_variant": 14188,
+    "splice_polypyrimidine_tract_variant|intron_variant": 14062,
+    "splice_region_variant|splice_polypyrimidine_tract_variant|intron_variant": 12203,
+    "missense_variant|splice_region_variant": 9846,
+    "splice_donor_region_variant|intron_variant": 6453,
+    "5_prime_UTR_variant": 5606,
+    "splice_acceptor_variant": 5454,
+    "splice_donor_variant": 5441,
+    "stop_gained|NMD_transcript_variant": 5158,
+    "3_prime_UTR_variant": 4273,
+    "splice_region_variant|intron_variant": 4097,
+    "splice_polypyrimidine_tract_variant|intron_variant|NMD_transcript_variant": 2738,
+    "splice_region_variant|synonymous_variant": 2500,
+    "intron_variant|non_coding_transcript_variant": 2446,
+    "splice_region_variant|splice_polypyrimidine_tract_variant|intron_variant|NMD_transcript_variant": 2159,
+    "splice_donor_5th_base_variant|intron_variant": 2145,
+    "splice_region_variant|3_prime_UTR_variant|NMD_transcript_variant": 1339,
+    "splice_donor_region_variant|intron_variant|NMD_transcript_variant": 1272,
+    "splice_acceptor_variant|NMD_transcript_variant": 1247,
+    "splice_donor_variant|NMD_transcript_variant": 1215,
+    "missense_variant|splice_region_variant|NMD_transcript_variant": 951,
+    "5_prime_UTR_variant|NMD_transcript_variant": 895,
+    "stop_gained|splice_region_variant": 883,
+    "splice_region_variant|intron_variant|NMD_transcript_variant": 711,
+    "splice_region_variant|5_prime_UTR_variant": 637,
+    "splice_region_variant|non_coding_transcript_exon_variant": 483,
+    "splice_polypyrimidine_tract_variant|intron_variant|non_coding_transcript_variant": 478,
+    "splice_donor_5th_base_variant|intron_variant|NMD_transcript_variant": 446,
+    "start_lost": 413,
+    "splice_region_variant|splice_polypyrimidine_tract_variant|intron_variant|non_coding_transcript_variant": 393,
+    "splice_region_variant|synonymous_variant|NMD_transcript_variant": 326,
+    "splice_donor_region_variant|intron_variant|non_coding_transcript_variant": 216,
+    "splice_donor_variant|non_coding_transcript_variant": 193,
+    "splice_acceptor_variant|non_coding_transcript_variant": 183,
+    "splice_region_variant|5_prime_UTR_variant|NMD_transcript_variant": 140,
+    "splice_region_variant|intron_variant|non_coding_transcript_variant": 128,
+    "stop_gained|splice_region_variant|NMD_transcript_variant": 115,
+    "start_lost|NMD_transcript_variant": 102,
+    "stop_lost": 98,
+    "splice_donor_5th_base_variant|intron_variant|non_coding_transcript_variant": 72,
+    "stop_retained_variant": 49,
+    "stop_lost|splice_region_variant|NMD_transcript_variant": 26,
+    "stop_lost|NMD_transcript_variant": 9,
+    "splice_region_variant|stop_retained_variant|NMD_transcript_variant": 3,
+    "stop_retained_variant|NMD_transcript_variant": 2
+  },
+  "unique_transcript_ids": 134,
+  "unique_protein_ids": 99,
+  "audit_passed": true
+}
